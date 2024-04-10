@@ -1,0 +1,343 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'user/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/plyr.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/style.css' %}" type="text/css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+    
+        * {
+            border: 0;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --bg: #e3e4e8;
+            --fg: #17181c;
+            --input: #ffffff;
+            --primary: #255ff4;
+            --dur: 1s;
+            font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1280 - 320));
+        }
+        .harsha, input {
+            color: rgb(64, 64, 237);
+            font: 1em/1.5 Hind, sans-serif;
+        }
+        .harsha {
+            display: flex;
+            height: 100vh;
+        }
+        form, input, .caret {
+            margin: auto;
+        }
+        form {
+            position: relative;
+            width: 100%;
+            max-width: 17em;
+        }
+        input, .caret {
+            display: block;
+            transition: all calc(var(--dur) * 0.5) linear;
+        }
+        input {
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0.25em inset;
+            caret-color: var(--primary);
+            width: 2em;
+            height: 2em;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        input:focus, input:valid {
+            background: var(--input);
+            border-radius: 0.25em;
+            box-shadow: none;
+            padding: 0.75em 1em;
+            transition-duration: calc(var(--dur) * 0.25);
+            transition-delay: calc(var(--dur) * 0.25);
+            width: 100%;
+            height: 3em;
+        }
+        input:focus {
+            animation: showCaret var(--dur) steps(1);
+            outline: transparent;
+        }
+        input:focus + .caret, input:valid + .caret {
+            animation: handleToCaret var(--dur) linear;
+            background: transparent;
+            width: 1px;
+            height: 1.5em;
+            transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+        }
+        input::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+        label {
+            color: #e3e4e8;
+            overflow: hidden;
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+        .caret {
+            background: currentColor;
+            border-radius: 0 0 0.125em 0.125em;
+            margin-bottom: -0.6em;
+            width: 0.25em;
+            height: 1em;
+            transform: translate(0,-1em) rotate(-45deg) translate(0,0.875em);
+            transform-origin: 50% 0;
+        }
+        
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {	
+            :root {
+                --bg: #17181c;
+                --fg: #e3e4e8;
+                --input: #2e3138;
+                --primary: #5583f6;
+            }
+        }
+        
+        /* Animations */
+        @keyframes showCaret {
+            from {
+                caret-color: transparent;
+            }
+            to {
+                caret-color: var(--primary);
+            }
+        }
+        @keyframes handleToCaret {
+            from {
+                background: currentColor;
+                width: 0.25em;
+                height: 1em;
+                transform: translate(0,-1em) rotate(-45deg) translate(0,0.875em);
+            }
+            25% {
+                background: currentColor;
+                width: 0.25em;
+                height: 1em;
+                transform: translate(0,-1em) rotate(-180deg) translate(0,0.875em);
+            }
+            50%, 62.5% {
+                background: var(--primary);
+                width: 1px;
+                height: 1.5em;
+                transform: translate(0,-1em) rotate(-180deg) translate(7.5em,2.5em);
+            }
+            75%, 99% {
+                background: var(--primary);
+                width: 1px;
+                height: 1.5em;
+                transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+            }
+            87.5% {
+                background: var(--primary);
+                width: 1px;
+                height: 1.5em;
+                transform: translate(0,-1em) rotate(-180deg) translate(7.5em,0.125em);
+            }
+            to {
+                background: transparent;
+                width: 1px;
+                height: 1.5em;
+                transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="./index.html">
+                            <img src="{% static 'user/img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="header__nav">
+                        <nav class="header__menu mobile-menu">
+                            <ul>
+                                <li><a href="{% url 'user_apps' %}">Apps</a></li>
+                                <li class="active"><a href="{% url 'user_url_analysis' %}">Analysis</a></li>
+                                <li><a href="{% url 'user_myprofile' %}">My Profile</a></li>
+                                <li><a href="{% url 'downloaded_apps' %}">My Apps</a></li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="header__right">
+                        <a href="{% url 'home_index' %}"><span class="icon_profile"></span> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Begin -->
+    <!-- Breadcrumb End -->
+
+    <!-- Anime Section Begin -->
+    <section class="anime-details spad">
+        <div class="container">
+            <div class="anime__details__content">
+                
+                <div class="row card m-5" style=" border-radius: 500px; background-color: rgb(221, 53, 53); border: 1px solid; padding: 10px; box-shadow: 5px 10px 18px #484444;">
+                    <div class="d-flex justify-content-center mt-5 ">
+    
+                        <h3 class="text-white"><b> ENTER URL... </b></h3>
+                    </div>
+                    <br>
+                    <div class="col-lg-12 harsha mb-5" >
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <label for="search">Search</label>
+                            <input id="search" name="url" type="search" pattern=".*\S.*" required>
+                            <span class="caret"></span>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </section>
+        <!-- Anime Section End -->
+
+        <!-- Footer Section Begin -->
+        <footer class="footer">
+            <div class="page-up">
+                <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="footer__logo">
+                            <a href="./index.html"><img src="{% static 'user/img/logo.png' %}" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer__nav">
+                            <ul>
+                                <li class="active"><a href="./index.html">Homepage</a></li>
+                                <li><a href="./categories.html">Categories</a></li>
+                                <li><a href="./blog.html">Our Blog</a></li>
+                                <li><a href="#">Contacts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://codebook.in/" target="_blank">Codebook</a>
+                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+
+                      </div>
+                  </div>
+              </div>
+          </footer>
+          <!-- Footer Section End -->
+
+          <!-- Search model Begin -->
+          <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch"><i class="icon_close"></i></div>
+                <form class="search-model-form">
+                    <input type="text" id="search-input" placeholder="Search here.....">
+                </form>
+            </div>
+        </div>
+        <!-- Search model end -->
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <script>swal({
+                title: "Success!",
+                text: "{{message}}",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+        
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+        <script>swal({
+                title: "Warning :)",
+                text: "{{message}}",
+                icon: "warning",
+                button: "OK",
+             
+            });
+        </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+        <script>swal({
+                title: "info :)",
+                text: "{{message}}",
+                icon: "info",
+                button: "OK",
+            });
+        </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <script>swal({
+                title: "error :)",
+                text: "{{message}}",
+                icon: "error",
+                button: "OK",
+            });
+        </script>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        <!-- Js Plugins -->
+        <script src="{% static 'user/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'user/js/player.js' %}"></script>
+        <script src="{% static 'user/js/jquery.nice-select.min.js' %}"></script>
+        <script src="{% static 'user/js/mixitup.min.js' %}"></script>
+        <script src="{% static 'user/js/jquery.slicknav.js' %}"></script>
+        <script src="{% static 'user/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'user/js/main.js' %}"></script>
+
+    </body>
+
+    </html>

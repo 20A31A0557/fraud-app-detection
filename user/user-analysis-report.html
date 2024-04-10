@@ -1,0 +1,537 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'user/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/plyr.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/css/style.css' %}" type="text/css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        .harsha {
+            font: normal 14px/100% "Andale Mono", AndaleMono, monospace;
+            width: 300px;
+            display:flex;
+            align-items:center;
+          }
+          .Click-here {
+            cursor: pointer;
+            background-image: linear-gradient(190deg, #f83600 0%, #fee140 100%);
+            color: #fff;
+            width: 180px;
+            text-align: center;
+            font-size:16px;
+            padding: 18px 0;
+            margin: 0 auto;
+            transition:background-image 3s ease-in-out;
+          }
+          .Click-here:hover{
+            transition:background-image 3s ease-in-out;
+            background-image: linear-gradient(90deg, #fee140 0%, #f83600 100%);
+          }
+          .custom-model-main {
+            text-align: center;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0; /* z-index: 1050; */
+            -webkit-overflow-scrolling: touch;
+            outline: 0;
+            opacity: 0;
+            -webkit-transition: opacity 0.15s linear, z-index 0.15;
+            -o-transition: opacity 0.15s linear, z-index 0.15;
+            transition: opacity 0.15s linear, z-index 0.15;
+            z-index: -1;
+            overflow-x: hidden;
+            overflow-y: auto;
+          }
+          
+          .model-open {
+            z-index: 99999;
+            opacity: 1;
+            overflow: hidden;
+          }
+          .custom-model-inner {
+            -webkit-transform: translate(0, -25%);
+            -ms-transform: translate(0, -25%);
+            transform: translate(0, -25%);
+            -webkit-transition: -webkit-transform 0.3s ease-out;
+            -o-transition: -o-transform 0.3s ease-out;
+            transition: -webkit-transform 0.3s ease-out;
+            -o-transition: transform 0.3s ease-out;
+            transition: transform 0.3s ease-out;
+            transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+            display: inline-block;
+            vertical-align: middle;
+            width: 800px;
+            margin: 30px auto;
+            max-width: 97%;
+          }
+          .custom-model-wrap {
+            display: block;
+            width: 100%;
+            position: relative;
+            background-color: #fff;
+            border: 1px solid #999;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+            background-clip: padding-box;
+            outline: 0;
+            text-align: left;
+            padding: 20px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            max-height: calc(100vh - 70px);
+              overflow-y: auto;
+          }
+          .model-open .custom-model-inner {
+            -webkit-transform: translate(0, 0);
+            -ms-transform: translate(0, 0);
+            transform: translate(0, 0);
+            position: relative;
+            z-index: 999;
+          }
+          .model-open .bg-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99;
+          }
+          .bg-overlay {
+            background: rgba(0, 0, 0, 0);
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            -webkit-transition: background 0.15s linear;
+            -o-transition: background 0.15s linear;
+            transition: background 0.15s linear;
+          }
+          .close-btn {
+            position: absolute;
+            right: 0;
+            top: -30px;
+            cursor: pointer;
+            z-index: 99;
+            font-size: 30px;
+            color: #fff;
+          }
+          
+          @media screen and (min-width:800px){
+              .custom-model-main:before {
+                content: "";
+                display: inline-block;
+                height: auto;
+                vertical-align: middle;
+                margin-right: -0px;
+                height: 100%;
+              }
+          }
+          @media screen and (max-width:799px){
+            .custom-model-inner{margin-top: 45px;}
+          }
+          
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="{% url 'user_apps' %}">
+                            <img src="{% static 'user/img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="header__nav">
+                        <nav class="header__menu mobile-menu">
+                            <ul>
+                                <li><a href="{% url 'user_apps' %}">Apps</a></li>
+                                <li class="active"><a href="{% url 'user_url_analysis' %}">Analysis</a></li>
+                                <li><a href="{% url 'user_myprofile' %}">My Profile</a></li>
+                                <li><a href="{% url 'downloaded_apps' %}">My Apps</a></li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="header__right">
+                        <a href="{% url 'home_index' %}"><span class="icon_profile"></span> Logout</a>
+
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Begin -->
+    
+    <!-- Breadcrumb End -->
+
+    <!-- Anime Section Begin -->
+    <section class="anime-details spad">
+        <div class="container">
+            <div class="anime__details__content">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="anime__details__pic set-bg" >
+                            <img src="{{image}}" srcset="{{imageset}}" style="height: 250px; width: 250px; border-radius: 50px;" alt="">
+                            <br>
+                            {% if percentage >=  20 %}
+                            <img src="{% static 'user/img/fake.png' %}" style="height: 200px; width: 200px;" alt="">
+                            {% elif percentage < 20 %}
+                            <img src="{% static 'user/img/genuine.png' %}" style="height: 200px; width: 220px;" alt="">
+
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="anime__details__text">
+                            <div class="anime__details__title">
+                                <h3>{{appname}}</h3>
+                                <span>Updated on : {{updatedonapp}}</span>
+                                <br>
+                                <h3><span>(Total No:of comments - {{no_of_comments}})</span></h3>
+                            </div>
+                            <div class="anime__details__rating">
+                                <span>
+                           {% if rating <= 1 %}
+                         {{rating}} 
+
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif rating <= 2 %}
+                         {{rating}} 
+
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif rating <= 3 %}
+                         {{rating}} 
+
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif rating <= 4 %}
+                         {{rating}} 
+
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif rating <= 5 %}
+                         {{rating}} 
+
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                        {% else %}
+                                    <p>No Rating Available</p>
+                        {% endif%}
+                      
+
+
+                                </span>
+                            </div>
+                            <p>{{aboutapp}}
+                        </p>
+                            <div class="anime__details__widget">
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-10">
+                                        <ul>
+                                            <li><span>Share:</span> {{permissions1}}</li>
+                                            <li><span>Data:</span>{{permissions2}}</li>
+                                            <li><span>Encryption:</span>{{permissions3}}</li>
+                                            <li><span>Bin:</span> {{permissions4}}</li>
+                                        </ul>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                            <!-- <div class="anime__details__btn">
+                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
+                                    class="fa fa-angle-right"></i></a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="anime__details__review">
+                            <div class="section-title">
+                                <h5>Reviews</h5>
+                            </div>
+                            
+                           
+                            {% for i in comments %}
+                            <div class="anime__review__item">
+                                <div class="anime__review__item__pic">
+                                    <img src="{{i.userImage}}" alt="">
+                                </div>
+                                <div class="anime__review__item__text">
+                                    <h6>{{i.userName}} - <span>{{i.at}}</span> - 
+                                       
+
+
+                           {% if i.score <= 1 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif i.score <= 2 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif i.score <= 3 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif i.score <= 4 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif i.score <= 5 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                         {% endif%}
+                      
+
+                                     </h6>
+                                    <p>{{i.content}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                     <div class="harsha">
+                     <div class="Click-here">More Reviews</div>        
+                     <div class="custom-model-main">
+                         <div class="custom-model-inner">        
+                         <div class="close-btn">×</div>
+                             <div class="custom-model-wrap">
+                                 <div class="pop-up-content-wrap">
+                                    {% for j in popup %}
+                                    <div class="anime__review__item">
+                                        <div class="anime__review__item__pic">
+                                            <img src="{{j.userImage}}" alt="">
+                                        </div>
+                                        <div class="anime__review__item__text">
+                                            <h6>{{j.userName}} - <span>{{j.at}}</span> -    
+                                            
+                           {% if j.score <= 1 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif j.score <= 2 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif j.score <= 3 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif j.score <= 4 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star-o" style="color:gold; font-size:20px"></i>
+                         {% elif j.score <= 5 %}
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                           <i class="fa fa-star" style="color:gold; font-size:20px"></i>
+                         {% endif%}
+                      
+
+                                            
+                                            </h6>
+                                            <p>{{j.content}}</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                 </div>
+                             </div>  
+                         </div>  
+                         <div class="bg-overlay"></div>
+                     </div> 
+                    </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- Anime Section End -->
+
+        <!-- Footer Section Begin -->
+        <footer class="footer">
+            <div class="page-up">
+                <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="footer__logo">
+                            <a href="./index.html"><img src="{% static 'user/img/logo.png' %}" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer__nav">
+                            <ul>
+                                <li class="active"><a href="./index.html">Homepage</a></li>
+                                <li><a href="./categories.html">Categories</a></li>
+                                <li><a href="./blog.html">Our Blog</a></li>
+                                <li><a href="#">Contacts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://codebook.in/" target="_blank">Codebook</a>
+                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+
+                      </div>
+                  </div>
+              </div>
+          </footer>
+          <!-- Footer Section End -->
+
+          <!-- Search model Begin -->
+          <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch"><i class="icon_close"></i></div>
+                <form class="search-model-form">
+                    <input type="text" id="search-input" placeholder="Search here.....">
+                </form>
+            </div>
+        </div>
+        <!-- Search model end -->
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <script>swal({
+                title: "Success!",
+                text: "{{message}}",
+                icon: "success",
+                button: "OK",
+            });
+        </script>
+        
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+        <script>swal({
+                title: "Warning :)",
+                text: "{{message}}",
+                icon: "warning",
+                button: "OK",
+             
+            });
+        </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+        <script>swal({
+                title: "info :)",
+                text: "{{message}}",
+                icon: "info",
+                button: "OK",
+            });
+        </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <script>swal({
+                title: "error :)",
+                text: "{{message}}",
+                icon: "error",
+                button: "OK",
+            });
+        </script>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <!-- Js Plugins -->
+        <script>
+            $(".Click-here").on('click', function() {
+                $(".custom-model-main").addClass('model-open');
+              }); 
+              $(".close-btn, .bg-overlay").click(function(){
+                $(".custom-model-main").removeClass('model-open');
+              });
+        </script>
+        <script src="{% static 'user/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'user/js/player.js' %}"></script>
+        <script src="{% static 'user/js/jquery.nice-select.min.js' %}"></script>
+        <script src="{% static 'user/js/mixitup.min.js' %}"></script>
+        <script src="{% static 'user/js/jquery.slicknav.js' %}"></script>
+        <script src="{% static 'user/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'user/js/main.js' %}"></script>
+
+    </body>
+
+    </html>
